@@ -37,3 +37,6 @@ rsconnect/
 
 # Ignore emacs text files
 *~
+
+# Ignore Token files
+loadNOAAToken.R
