@@ -1,0 +1,35 @@
+---
+title: "demo"
+output: html_document
+---
+
+# Fetching data
+
+Fetching data from NOAA datasets.
+
+```{r fetchNOAA, message=FALSE, verbose=FALSE}
+devtools::install_github("ropensci/rnoaa")
+library("rnoaa")
+library("anytime") # For converting character to Datetime
+
+# Turn off warnings - normally coming from missing data when fetching
+options(warn=1)
+
+# Load Token
+source('loadNOAAToken.R')
+
+# Load function to fetch temperature
+source('fetchTemp.R')
+
+# Obtain data from NOAA
+tmax_vals <- fetchTemperatureFromNOAA(boundingbox=c(24.5, -81.4, 25.2, -80.3), 
+                                      startdate='1983-01-01', enddate='1983-01-10',
+                                      datatypeid='TMAX')
+
+# Plot the first station
+x <- as.Date(tmax_vals$date[tmax_vals$stationid==tmax_vals$stationid[1]])
+y <- 0.1*tmax_vals$value[tmax_vals$stationid==tmax_vals$stationid[1]]
+plot(x, y, xlab='', ylab='TMAX (Farenhite)', type='l', main=tmax_vals$stationid[1], xaxt='n')
+axis.Date(1, at = seq(min(x), max(x), length.out=length(x)),
+          format="%d-%b-%Y", las=2)
+```
