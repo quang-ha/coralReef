@@ -14,6 +14,7 @@ fetchTemperatureFromNOAA <- function(boundingbox=NULL,
   #' For information on how to use the Token in R, 
   #' check the link to the rnoaa's GitHub page.
   #' 
+  #' INPUT: 
   #'   boundingbox - a vector contains four points in 
   #'     lat, lon of bottom-left and top-right of the
   #'     search box
@@ -25,7 +26,11 @@ fetchTemperatureFromNOAA <- function(boundingbox=NULL,
   #'     from the Daily Summaries dataset. Options 
   #'     include TMIN - minimum temperature and 
   #'     TMAX - maximum temperature. Further
-  #'     details can be found at NOAA's web page.   
+  #'     details can be found at NOAA's web page.
+  #'     
+  #'  OUTPUT:
+  #'    return a dataframe with date, stationsid and 
+  #'    respective value.
   
   # Search for list of stations using a bounding box
   stations <- ncdc_stations(datasetid='GHCND', extent=boundingbox)
