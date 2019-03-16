@@ -40,3 +40,6 @@ rsconnect/
 
 # Ignore Token files
 loadNOAAToken.R
+
+# Ignore knitted html
+*.html
